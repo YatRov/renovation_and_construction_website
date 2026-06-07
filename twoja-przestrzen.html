@@ -1,0 +1,1350 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Twoja Przestrzeń — Remonty i Wykończenia Premium | Trójmiasto</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=Jost:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --gold: #C9A96E;
+    --gold-light: #E8D5B0;
+    --gold-dark: #9E7A42;
+    --cream: #FAF8F4;
+    --warm-white: #FFFFFF;
+    --charcoal: #2A2825;
+    --charcoal-mid: #3D3A35;
+    --warm-gray: #6B6560;
+    --light-gray: #E8E4DE;
+    --beige: #F0EBE1;
+    --section-bg: #F7F4EF;
+    --font-display: 'Cormorant Garamond', serif;
+    --font-body: 'Jost', sans-serif;
+    --nav-h: 80px;
+  }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: var(--font-body);
+    background: var(--cream);
+    color: var(--charcoal);
+    overflow-x: hidden;
+    font-weight: 300;
+    line-height: 1.7;
+  }
+
+  /* ── NAV ── */
+  nav {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 1000;
+    height: var(--nav-h);
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 0 4rem;
+    transition: background 0.4s, box-shadow 0.4s;
+    background: transparent;
+  }
+  nav.scrolled {
+    background: rgba(250,248,244,0.97);
+    box-shadow: 0 1px 0 rgba(201,169,110,0.2);
+    backdrop-filter: blur(12px);
+  }
+  .nav-logo {
+    font-family: var(--font-display);
+    font-size: 1.5rem;
+    font-weight: 500;
+    letter-spacing: 0.02em;
+    color: var(--cream);
+    text-decoration: none;
+    transition: color 0.4s;
+  }
+  nav.scrolled .nav-logo { color: var(--charcoal); }
+  nav.scrolled .nav-links a { color: var(--charcoal-mid); }
+  nav.scrolled .nav-links a:hover { color: var(--gold-dark); }
+
+  .nav-links { display: flex; gap: 2.5rem; list-style: none; }
+  .nav-links a {
+    font-size: 0.8rem;
+    font-weight: 400;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: rgba(255,255,255,0.85);
+    text-decoration: none;
+    transition: color 0.3s;
+  }
+  .nav-links a:hover { color: var(--gold-light); }
+
+  .nav-cta {
+    padding: 0.6rem 1.6rem;
+    border: 1px solid var(--gold);
+    color: var(--gold);
+    text-decoration: none;
+    font-size: 0.75rem;
+    font-weight: 400;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    transition: all 0.3s;
+    font-family: var(--font-body);
+  }
+  .nav-cta:hover { background: var(--gold); color: var(--charcoal); }
+
+  /* ── HERO ── */
+  #hero {
+    position: relative;
+    height: 100vh;
+    min-height: 700px;
+    display: flex; align-items: center;
+    overflow: hidden;
+  }
+  .hero-bg {
+    position: absolute; inset: 0;
+    background: linear-gradient(135deg, #1a1814 0%, #2d2920 50%, #1e1c18 100%);
+  }
+  /* Using uploaded image as hero */
+  .hero-img {
+    position: absolute; inset: 0;
+    background-image: url('https://images.unsplash.com/photo-1600210492493-0946911123ea?auto=format&fit=crop&w=1800&q=80');
+    background-size: cover;
+    background-position: center;
+    opacity: 0.55;
+    transform: scale(1.05);
+    animation: heroZoom 12s ease-out forwards;
+  }
+  @keyframes heroZoom { to { transform: scale(1); } }
+
+  .hero-overlay {
+    position: absolute; inset: 0;
+    background: linear-gradient(to right, rgba(26,24,20,0.75) 0%, rgba(26,24,20,0.35) 60%, transparent 100%);
+  }
+  .hero-content {
+    position: relative; z-index: 2;
+    padding: 0 4rem;
+    max-width: 750px;
+    animation: heroFadeIn 1.2s ease-out 0.3s both;
+  }
+  @keyframes heroFadeIn { from { opacity: 0; transform: translateY(30px); } to { opacity: 1; transform: none; } }
+
+  .hero-eyebrow {
+    font-size: 0.75rem;
+    font-weight: 400;
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 1.5rem;
+    display: flex; align-items: center; gap: 1rem;
+  }
+  .hero-eyebrow::before {
+    content: '';
+    display: block; width: 40px; height: 1px;
+    background: var(--gold);
+  }
+  .hero-title {
+    font-family: var(--font-display);
+    font-size: clamp(3rem, 6vw, 5.5rem);
+    font-weight: 300;
+    line-height: 1.1;
+    color: #fff;
+    margin-bottom: 1.5rem;
+  }
+  .hero-title em {
+    font-style: italic;
+    color: var(--gold-light);
+  }
+  .hero-sub {
+    font-size: 1.05rem;
+    font-weight: 300;
+    color: rgba(255,255,255,0.75);
+    max-width: 480px;
+    margin-bottom: 3rem;
+    line-height: 1.8;
+  }
+  .hero-btns { display: flex; gap: 1rem; flex-wrap: wrap; }
+
+  .btn-primary {
+    padding: 1rem 2.5rem;
+    background: var(--gold);
+    color: var(--charcoal);
+    text-decoration: none;
+    font-size: 0.8rem;
+    font-weight: 500;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    transition: all 0.3s;
+    display: inline-block;
+    font-family: var(--font-body);
+  }
+  .btn-primary:hover { background: var(--gold-dark); color: #fff; transform: translateY(-2px); }
+
+  .btn-outline {
+    padding: 1rem 2.5rem;
+    border: 1px solid rgba(255,255,255,0.5);
+    color: #fff;
+    text-decoration: none;
+    font-size: 0.8rem;
+    font-weight: 400;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    transition: all 0.3s;
+    display: inline-block;
+    font-family: var(--font-body);
+  }
+  .btn-outline:hover { border-color: var(--gold); color: var(--gold); transform: translateY(-2px); }
+
+  .hero-scroll {
+    position: absolute; bottom: 2.5rem; left: 50%;
+    transform: translateX(-50%);
+    display: flex; flex-direction: column; align-items: center; gap: 0.5rem;
+    color: rgba(255,255,255,0.5);
+    font-size: 0.65rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    animation: bounce 2s infinite;
+    z-index: 2;
+  }
+  @keyframes bounce { 0%,100%{transform:translateX(-50%) translateY(0)} 50%{transform:translateX(-50%) translateY(6px)} }
+  .hero-scroll::after { content: ''; display: block; width: 1px; height: 40px; background: linear-gradient(to bottom, rgba(255,255,255,0.4), transparent); }
+
+  /* ── SECTIONS ── */
+  section { padding: 6rem 4rem; }
+  .section-label {
+    font-size: 0.7rem;
+    font-weight: 400;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    color: var(--gold-dark);
+    margin-bottom: 1rem;
+    display: flex; align-items: center; gap: 1rem;
+  }
+  .section-label::before { content: ''; display: block; width: 30px; height: 1px; background: var(--gold-dark); }
+  .section-title {
+    font-family: var(--font-display);
+    font-size: clamp(2.2rem, 4vw, 3.5rem);
+    font-weight: 300;
+    line-height: 1.15;
+    color: var(--charcoal);
+    margin-bottom: 1.5rem;
+  }
+  .section-title em { font-style: italic; color: var(--gold-dark); }
+  .section-sub {
+    font-size: 1rem;
+    font-weight: 300;
+    color: var(--warm-gray);
+    max-width: 560px;
+    line-height: 1.85;
+  }
+
+  /* ── O NAS ── */
+  #onas { background: var(--charcoal); color: #fff; }
+  #onas .section-label { color: var(--gold); }
+  #onas .section-label::before { background: var(--gold); }
+  #onas .section-title { color: #fff; }
+  #onas .section-title em { color: var(--gold-light); }
+  #onas .section-sub { color: rgba(255,255,255,0.6); max-width: 100%; }
+
+  .onas-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 5rem;
+    margin-top: 4rem;
+    align-items: center;
+  }
+  .onas-img-wrap {
+    position: relative;
+  }
+  .onas-img {
+    width: 100%;
+    aspect-ratio: 4/5;
+    object-fit: cover;
+    display: block;
+  }
+  .onas-img-accent {
+    position: absolute;
+    bottom: -2rem; right: -2rem;
+    width: 55%;
+    aspect-ratio: 1;
+    background-image: url('https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?auto=format&fit=crop&w=800&q=80');
+    background-size: cover;
+    background-position: center;
+    border: 6px solid var(--charcoal);
+  }
+  .onas-text p {
+    color: rgba(255,255,255,0.65);
+    font-size: 1rem;
+    line-height: 1.9;
+    margin-bottom: 1.5rem;
+  }
+
+  .stats-row {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 0;
+    border-top: 1px solid rgba(201,169,110,0.2);
+    margin-top: 5rem;
+    padding-top: 0;
+  }
+  .stat-item {
+    padding: 2.5rem 2rem;
+    border-right: 1px solid rgba(201,169,110,0.15);
+    text-align: center;
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 0.6s, transform 0.6s;
+  }
+  .stat-item.visible { opacity: 1; transform: none; }
+  .stat-item:last-child { border-right: none; }
+  .stat-num {
+    font-family: var(--font-display);
+    font-size: 3.5rem;
+    font-weight: 300;
+    color: var(--gold);
+    line-height: 1;
+    display: block;
+    margin-bottom: 0.5rem;
+  }
+  .stat-label {
+    font-size: 0.75rem;
+    font-weight: 400;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: rgba(255,255,255,0.45);
+  }
+
+  /* ── USŁUGI ── */
+  #uslugi { background: var(--section-bg); }
+  .uslugi-intro {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 4rem;
+    margin-bottom: 4rem;
+    align-items: end;
+  }
+  .uslugi-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1.5rem;
+  }
+  .usluga-card {
+    background: #fff;
+    overflow: hidden;
+    cursor: pointer;
+    transition: transform 0.4s, box-shadow 0.4s;
+    position: relative;
+  }
+  .usluga-card:hover { transform: translateY(-6px); box-shadow: 0 20px 50px rgba(42,40,37,0.12); }
+  .usluga-img {
+    width: 100%;
+    height: 220px;
+    object-fit: cover;
+    display: block;
+    filter: brightness(0.9);
+    transition: filter 0.4s, transform 0.4s;
+  }
+  .usluga-card:hover .usluga-img { filter: brightness(1); transform: scale(1.03); }
+  .usluga-img-wrap { overflow: hidden; }
+  .usluga-body { padding: 1.75rem 2rem 2rem; }
+  .usluga-icon {
+    width: 44px; height: 44px;
+    display: flex; align-items: center; justify-content: center;
+    border: 1px solid var(--gold);
+    color: var(--gold-dark);
+    font-size: 1.2rem;
+    margin-bottom: 1rem;
+    font-family: var(--font-display);
+    font-weight: 300;
+  }
+  .usluga-title {
+    font-family: var(--font-display);
+    font-size: 1.45rem;
+    font-weight: 400;
+    color: var(--charcoal);
+    margin-bottom: 0.75rem;
+  }
+  .usluga-desc {
+    font-size: 0.9rem;
+    color: var(--warm-gray);
+    line-height: 1.8;
+    font-weight: 300;
+  }
+  .usluga-link {
+    display: inline-flex; align-items: center; gap: 0.5rem;
+    margin-top: 1.25rem;
+    font-size: 0.75rem;
+    font-weight: 500;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--gold-dark);
+    text-decoration: none;
+    transition: gap 0.3s;
+  }
+  .usluga-link:hover { gap: 1rem; }
+  .usluga-link::after { content: '→'; }
+
+  /* ── DLACZEGO MY ── */
+  #dlaczego { background: var(--cream); }
+  .dlaczego-wrap {
+    display: grid;
+    grid-template-columns: 1fr 2fr;
+    gap: 6rem;
+    align-items: start;
+  }
+  .dlaczego-right {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 2.5rem;
+  }
+  .przewaga {
+    padding: 2rem 0;
+    border-top: 1px solid var(--light-gray);
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 0.6s, transform 0.6s;
+  }
+  .przewaga.visible { opacity: 1; transform: none; }
+  .przewaga-num {
+    font-family: var(--font-display);
+    font-size: 2.5rem;
+    font-weight: 300;
+    color: var(--gold);
+    line-height: 1;
+    margin-bottom: 0.75rem;
+  }
+  .przewaga-title {
+    font-size: 0.9rem;
+    font-weight: 500;
+    letter-spacing: 0.05em;
+    color: var(--charcoal);
+    margin-bottom: 0.5rem;
+    text-transform: uppercase;
+  }
+  .przewaga-desc {
+    font-size: 0.88rem;
+    color: var(--warm-gray);
+    line-height: 1.75;
+    font-weight: 300;
+  }
+
+  /* ── REALIZACJE ── */
+  #realizacje { background: var(--charcoal); color: #fff; padding-bottom: 4rem; }
+  #realizacje .section-label { color: var(--gold); }
+  #realizacje .section-label::before { background: var(--gold); }
+  #realizacje .section-title { color: #fff; }
+  #realizacje .section-title em { color: var(--gold-light); }
+  .realizacje-header {
+    display: flex; justify-content: space-between; align-items: flex-end;
+    margin-bottom: 3rem;
+  }
+  .realizacje-grid {
+    display: grid;
+    grid-template-columns: 2fr 1fr 1fr;
+    grid-template-rows: repeat(2, 280px);
+    gap: 1px;
+    background: rgba(201,169,110,0.1);
+  }
+  .real-item {
+    position: relative;
+    overflow: hidden;
+    cursor: pointer;
+  }
+  .real-item:first-child { grid-row: span 2; }
+  .real-img {
+    width: 100%; height: 100%;
+    object-fit: cover;
+    display: block;
+    transition: transform 0.6s ease;
+    filter: brightness(0.75);
+  }
+  .real-item:hover .real-img { transform: scale(1.07); filter: brightness(0.9); }
+  .real-overlay {
+    position: absolute; inset: 0;
+    background: linear-gradient(to top, rgba(26,24,20,0.85) 0%, transparent 50%);
+    display: flex; align-items: flex-end;
+    padding: 1.5rem;
+    opacity: 0;
+    transition: opacity 0.4s;
+  }
+  .real-item:hover .real-overlay { opacity: 1; }
+  .real-info {}
+  .real-tag {
+    font-size: 0.65rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--gold);
+    display: block;
+    margin-bottom: 0.3rem;
+  }
+  .real-name {
+    font-family: var(--font-display);
+    font-size: 1.4rem;
+    font-weight: 300;
+    color: #fff;
+  }
+  .realizacje-cta {
+    text-align: center;
+    margin-top: 3rem;
+  }
+  .btn-gold {
+    padding: 1rem 2.5rem;
+    border: 1px solid var(--gold);
+    color: var(--gold);
+    text-decoration: none;
+    font-size: 0.8rem;
+    font-weight: 400;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    transition: all 0.3s;
+    display: inline-block;
+    font-family: var(--font-body);
+  }
+  .btn-gold:hover { background: var(--gold); color: var(--charcoal); }
+
+  /* ── PROCES ── */
+  #proces { background: var(--section-bg); }
+  .proces-steps {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    gap: 0;
+    margin-top: 4rem;
+    position: relative;
+  }
+  .proces-steps::before {
+    content: '';
+    position: absolute;
+    top: 28px; left: 10%; right: 10%;
+    height: 1px;
+    background: var(--light-gray);
+  }
+  .step {
+    padding: 0 1.5rem;
+    text-align: center;
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 0.6s, transform 0.6s;
+  }
+  .step.visible { opacity: 1; transform: none; }
+  .step-num {
+    width: 56px; height: 56px;
+    background: var(--cream);
+    border: 1px solid var(--gold);
+    display: flex; align-items: center; justify-content: center;
+    margin: 0 auto 1.5rem;
+    font-family: var(--font-display);
+    font-size: 1.4rem;
+    font-weight: 300;
+    color: var(--gold-dark);
+    position: relative; z-index: 1;
+    transition: background 0.3s, color 0.3s;
+  }
+  .step:hover .step-num { background: var(--gold); color: var(--charcoal); }
+  .step-title {
+    font-size: 0.85rem;
+    font-weight: 500;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--charcoal);
+    margin-bottom: 0.75rem;
+  }
+  .step-desc {
+    font-size: 0.85rem;
+    color: var(--warm-gray);
+    line-height: 1.75;
+    font-weight: 300;
+  }
+
+  /* ── KONTAKT ── */
+  #kontakt { background: var(--cream); }
+  .kontakt-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 6rem;
+    margin-top: 4rem;
+  }
+  .kontakt-info {}
+  .kontakt-info p {
+    font-size: 1rem;
+    color: var(--warm-gray);
+    line-height: 1.9;
+    margin-bottom: 2rem;
+    font-weight: 300;
+  }
+  .kontakt-detail {
+    display: flex; align-items: flex-start; gap: 1rem;
+    margin-bottom: 1.25rem;
+    padding-bottom: 1.25rem;
+    border-bottom: 1px solid var(--light-gray);
+  }
+  .kontakt-detail:last-of-type { border-bottom: none; }
+  .kontakt-icon {
+    width: 40px; height: 40px;
+    border: 1px solid var(--gold);
+    display: flex; align-items: center; justify-content: center;
+    flex-shrink: 0;
+    color: var(--gold-dark);
+    font-family: var(--font-display);
+    font-size: 1.1rem;
+  }
+  .kontakt-detail-text strong {
+    display: block;
+    font-size: 0.75rem;
+    font-weight: 500;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--charcoal);
+    margin-bottom: 0.2rem;
+  }
+  .kontakt-detail-text span {
+    font-size: 1rem;
+    color: var(--warm-gray);
+    font-weight: 300;
+  }
+  .kontakt-form {}
+  .form-row { margin-bottom: 1.25rem; }
+  .form-row label {
+    display: block;
+    font-size: 0.7rem;
+    font-weight: 500;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--warm-gray);
+    margin-bottom: 0.5rem;
+  }
+  .form-row input,
+  .form-row textarea,
+  .form-row select {
+    width: 100%;
+    padding: 0.9rem 1.2rem;
+    border: 1px solid var(--light-gray);
+    background: #fff;
+    font-family: var(--font-body);
+    font-size: 0.95rem;
+    font-weight: 300;
+    color: var(--charcoal);
+    outline: none;
+    transition: border-color 0.3s;
+    appearance: none;
+    border-radius: 0;
+  }
+  .form-row input:focus,
+  .form-row textarea:focus,
+  .form-row select:focus { border-color: var(--gold); }
+  .form-row textarea { height: 120px; resize: vertical; }
+  .form-row-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
+
+  /* OPINIE */
+  .opinie {
+    margin-top: 5rem;
+    padding-top: 4rem;
+    border-top: 1px solid var(--light-gray);
+  }
+  .opinie-title {
+    font-family: var(--font-display);
+    font-size: 2rem;
+    font-weight: 300;
+    color: var(--charcoal);
+    margin-bottom: 2.5rem;
+    text-align: center;
+  }
+  .opinie-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.5rem;
+  }
+  .opinia {
+    background: var(--section-bg);
+    padding: 2rem;
+    border-left: 3px solid var(--gold);
+  }
+  .opinia-stars {
+    color: var(--gold);
+    font-size: 0.85rem;
+    letter-spacing: 0.1em;
+    margin-bottom: 1rem;
+  }
+  .opinia-text {
+    font-family: var(--font-display);
+    font-size: 1.1rem;
+    font-style: italic;
+    color: var(--charcoal-mid);
+    line-height: 1.7;
+    margin-bottom: 1.25rem;
+    font-weight: 300;
+  }
+  .opinia-author {
+    font-size: 0.8rem;
+    font-weight: 500;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--gold-dark);
+  }
+  .opinia-city {
+    font-size: 0.8rem;
+    color: var(--warm-gray);
+    font-weight: 300;
+  }
+
+  /* MAP PLACEHOLDER */
+  .map-placeholder {
+    margin-top: 4rem;
+    background: var(--section-bg);
+    border: 1px solid var(--light-gray);
+    padding: 3rem 2rem;
+    text-align: center;
+  }
+  .map-title {
+    font-family: var(--font-display);
+    font-size: 1.6rem;
+    font-weight: 300;
+    color: var(--charcoal);
+    margin-bottom: 1rem;
+  }
+  .map-cities {
+    display: flex; justify-content: center; gap: 3rem;
+    margin-top: 1.5rem;
+    flex-wrap: wrap;
+  }
+  .map-city {
+    display: flex; flex-direction: column; align-items: center; gap: 0.5rem;
+  }
+  .map-city-dot {
+    width: 12px; height: 12px;
+    background: var(--gold);
+    border-radius: 50%;
+    position: relative;
+  }
+  .map-city-dot::after {
+    content: '';
+    position: absolute; inset: -4px;
+    border: 1px solid var(--gold);
+    border-radius: 50%;
+    animation: pulse 2s infinite;
+  }
+  @keyframes pulse { 0%,100%{opacity:1;transform:scale(1)} 50%{opacity:0;transform:scale(1.8)} }
+  .map-city-name {
+    font-size: 0.8rem;
+    font-weight: 500;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--charcoal);
+  }
+
+  /* ── FOOTER ── */
+  footer {
+    background: var(--charcoal);
+    color: rgba(255,255,255,0.5);
+    padding: 3rem 4rem;
+    display: grid;
+    grid-template-columns: 1fr auto auto;
+    align-items: center;
+    gap: 3rem;
+  }
+  .footer-logo {
+    font-family: var(--font-display);
+    font-size: 1.4rem;
+    font-weight: 400;
+    color: #fff;
+    text-decoration: none;
+    display: block;
+    margin-bottom: 0.5rem;
+  }
+  .footer-tagline {
+    font-size: 0.75rem;
+    letter-spacing: 0.1em;
+    color: rgba(255,255,255,0.35);
+  }
+  .footer-links { display: flex; flex-direction: column; gap: 0.5rem; }
+  .footer-links a {
+    font-size: 0.8rem;
+    color: rgba(255,255,255,0.45);
+    text-decoration: none;
+    transition: color 0.3s;
+    letter-spacing: 0.05em;
+  }
+  .footer-links a:hover { color: var(--gold); }
+  .footer-contact { text-align: right; }
+  .footer-phone {
+    font-family: var(--font-display);
+    font-size: 1.5rem;
+    font-weight: 300;
+    color: var(--gold);
+    display: block;
+    margin-bottom: 0.25rem;
+    text-decoration: none;
+  }
+  .footer-email {
+    font-size: 0.85rem;
+    color: rgba(255,255,255,0.4);
+  }
+  .footer-bottom {
+    background: rgba(0,0,0,0.3);
+    text-align: center;
+    padding: 1rem 4rem;
+    font-size: 0.75rem;
+    color: rgba(255,255,255,0.25);
+    letter-spacing: 0.05em;
+  }
+
+  /* ── SCROLL REVEAL ── */
+  .reveal {
+    opacity: 0;
+    transform: translateY(30px);
+    transition: opacity 0.7s ease, transform 0.7s ease;
+  }
+  .reveal.visible { opacity: 1; transform: none; }
+
+  /* ── MOBILE NAV ── */
+  .hamburger { display: none; background: none; border: none; cursor: pointer; color: #fff; font-size: 1.5rem; }
+  nav.scrolled .hamburger { color: var(--charcoal); }
+
+  @media (max-width: 1024px) {
+    .onas-grid { grid-template-columns: 1fr; }
+    .onas-img-wrap { max-width: 500px; }
+    .stats-row { grid-template-columns: repeat(2, 1fr); }
+    .uslugi-intro { grid-template-columns: 1fr; }
+    .dlaczego-wrap { grid-template-columns: 1fr; gap: 3rem; }
+    .proces-steps { grid-template-columns: 1fr 1fr; gap: 2rem; }
+    .proces-steps::before { display: none; }
+    .kontakt-grid { grid-template-columns: 1fr; gap: 3rem; }
+    .opinie-grid { grid-template-columns: 1fr; }
+    footer { grid-template-columns: 1fr; text-align: center; }
+    .footer-contact { text-align: center; }
+    .realizacje-grid { grid-template-columns: 1fr 1fr; grid-template-rows: repeat(3, 220px); }
+    .real-item:first-child { grid-row: span 1; }
+  }
+
+  @media (max-width: 768px) {
+    nav { padding: 0 1.5rem; }
+    .nav-links { display: none; }
+    .nav-cta { display: none; }
+    .hamburger { display: block; }
+    section { padding: 4rem 1.5rem; }
+    .hero-content { padding: 0 1.5rem; }
+    .uslugi-grid { grid-template-columns: 1fr; }
+    .dlaczego-right { grid-template-columns: 1fr; }
+    .realizacje-grid { grid-template-columns: 1fr; grid-template-rows: auto; }
+    .real-item { height: 250px; }
+    .realizacje-header { flex-direction: column; gap: 1.5rem; align-items: flex-start; }
+    .stats-row { grid-template-columns: 1fr 1fr; }
+    .form-row-2 { grid-template-columns: 1fr; }
+    footer { padding: 2.5rem 1.5rem; gap: 2rem; }
+    .footer-bottom { padding: 1rem 1.5rem; }
+    .map-cities { gap: 2rem; }
+    .proces-steps { grid-template-columns: 1fr; }
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav id="mainNav">
+  <a href="#hero" class="nav-logo">Twoja Przestrzeń</a>
+  <ul class="nav-links">
+    <li><a href="#onas">O nas</a></li>
+    <li><a href="#uslugi">Usługi</a></li>
+    <li><a href="#realizacje">Realizacje</a></li>
+    <li><a href="#proces">Proces</a></li>
+    <li><a href="#kontakt">Kontakt</a></li>
+  </ul>
+  <a href="#kontakt" class="nav-cta">Bezpłatna konsultacja</a>
+  <button class="hamburger" onclick="toggleMenu()" aria-label="Menu">☰</button>
+</nav>
+
+<!-- HERO -->
+<section id="hero">
+  <div class="hero-bg"></div>
+  <div class="hero-img"></div>
+  <div class="hero-overlay"></div>
+  <div class="hero-content">
+    <div class="hero-eyebrow">Trójmiasto — Gdańsk · Gdynia · Sopot</div>
+    <h1 class="hero-title">
+      Twój dom zasługuje<br>
+      na <em>wyjątkowe</em><br>
+      wykończenie
+    </h1>
+    <p class="hero-sub">
+      Kompleksowe remonty i wykończenia wnętrz, które zamieniają przestrzeń w miejsce, w którym nie możesz się napatrzeć. Od projektu do ostatniego detalu — w Twoich rękach zostaje tylko klucz.
+    </p>
+    <div class="hero-btns">
+      <a href="#kontakt" class="btn-primary">Rozpocznij projekt</a>
+      <a href="#realizacje" class="btn-outline">Zobacz realizacje</a>
+    </div>
+  </div>
+  <div class="hero-scroll">Przewiń</div>
+</section>
+
+<!-- O NAS -->
+<section id="onas">
+  <div class="onas-grid">
+    <div class="onas-img-wrap">
+      <img src="https://images.unsplash.com/photo-1558618666-fcd25c85cd64?auto=format&fit=crop&w=1200&q=80" alt="Rzemiosło i precyzja w pracy" class="onas-img">
+      <div class="onas-img-accent"></div>
+    </div>
+    <div class="onas-text">
+      <div class="section-label">O nas</div>
+      <h2 class="section-title">Budujemy przestrzenie,<br><em>które inspirują</em></h2>
+      <p>Przez ponad dekadę działamy tam, gdzie jakość nie jest opcją, lecz standardem. Twoja Przestrzeń to zespół pasjonatów wnętrz z Trójmiasta — architektów, projektantów i mistrzów rzemiosła, którzy rozumieją, że remont to nie tylko praca budowlana. To transformacja miejsca, w którym żyjesz.</p>
+      <p>Każdy projekt traktujemy indywidualnie. Słuchamy, doradzamy, projektujemy i wykonujemy — od pierwszego spotkania do symbolicznego wręczenia kluczy. Nasi klienci wracają do nas po kolejne projekty i polecają nas rodzinie. To nie przypadek — to efekt pracy z prawdziwą uwagą.</p>
+      <p style="color: var(--gold-light); font-style: italic; font-family: var(--font-display); font-size: 1.15rem; font-weight: 300;">"Nie robimy remontów. Tworzymy domy, w których chce się żyć."</p>
+    </div>
+  </div>
+  <div class="stats-row">
+    <div class="stat-item">
+      <span class="stat-num" data-target="350">0</span>
+      <span class="stat-label">Ukończonych projektów</span>
+    </div>
+    <div class="stat-item">
+      <span class="stat-num" data-target="12">0</span>
+      <span class="stat-label">Lat doświadczenia</span>
+    </div>
+    <div class="stat-item">
+      <span class="stat-num" data-target="98">0</span>
+      <span class="stat-label">% zadowolonych klientów</span>
+    </div>
+    <div class="stat-item">
+      <span class="stat-num" data-target="3">0</span>
+      <span class="stat-label">Miasta Trójmiasta</span>
+    </div>
+  </div>
+</section>
+
+<!-- USŁUGI -->
+<section id="uslugi">
+  <div class="uslugi-intro">
+    <div>
+      <div class="section-label">Usługi</div>
+      <h2 class="section-title">Pełen zakres<br><em>realizacji</em></h2>
+    </div>
+    <p class="section-sub">Oferujemy kompleksowe usługi remontowe i wykończeniowe — od drobnych modernizacji po totalne metamorfozy. Każdy etap nadzorowany przez doświadczonego kierownika projektu.</p>
+  </div>
+  <div class="uslugi-grid">
+    <div class="usluga-card reveal">
+      <div class="usluga-img-wrap">
+        <img src="https://images.unsplash.com/photo-1556909114-f6e7ad7d3136?auto=format&fit=crop&w=1400&q=80" alt="Kompleksowe remonty" class="usluga-img">
+      </div>
+      <div class="usluga-body">
+        <div class="usluga-icon">I</div>
+        <h3 class="usluga-title">Kompleksowe Remonty</h3>
+        <p class="usluga-desc">Od stanu surowego do gotowego mieszkania — zarządzamy całym procesem. Instalacje, tynki, podłogi, malowanie. Jeden kontakt, zero stresu, pełna gwarancja.</p>
+        <a href="#kontakt" class="usluga-link">Zapytaj o wycenę</a>
+      </div>
+    </div>
+    <div class="usluga-card reveal">
+      <div class="usluga-img-wrap">
+        <img src="https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?auto=format&fit=crop&w=1200&q=80" alt="Wykończenia pod klucz" class="usluga-img">
+      </div>
+      <div class="usluga-body">
+        <div class="usluga-icon">II</div>
+        <h3 class="usluga-title">Wykończenia Pod Klucz</h3>
+        <p class="usluga-desc">Przejmujesz gotowe mieszkanie z kluczem w dłoni. Meble, oświetlenie, dekoracje — wszystko dobieramy i montujemy. Wchodzisz, mieszkasz.</p>
+        <a href="#kontakt" class="usluga-link">Zapytaj o wycenę</a>
+      </div>
+    </div>
+    <div class="usluga-card reveal">
+      <div class="usluga-img-wrap">
+        <img src="https://images.unsplash.com/photo-1600566753190-17f0baa2a6c3?auto=format&fit=crop&w=1200&q=80" alt="Projektowanie wnętrz" class="usluga-img">
+      </div>
+      <div class="usluga-body">
+        <div class="usluga-icon">III</div>
+        <h3 class="usluga-title">Projektowanie Wnętrz</h3>
+        <p class="usluga-desc">Twój styl, nasze narzędzia. Tworzymy projekty wnętrz, które są piękne, funkcjonalne i spersonalizowane. Wizualizacje 3D, dobór materiałów, nadzór autorski.</p>
+        <a href="#kontakt" class="usluga-link">Zapytaj o wycenę</a>
+      </div>
+    </div>
+    <div class="usluga-card reveal">
+      <div class="usluga-img-wrap">
+        <img src="https://images.unsplash.com/photo-1558618666-fcd25c85cd64?auto=format&fit=crop&w=1200&q=80" alt="Renowacje i modernizacje" class="usluga-img">
+      </div>
+      <div class="usluga-body">
+        <div class="usluga-icon">IV</div>
+        <h3 class="usluga-title">Renowacje i Modernizacje</h3>
+        <p class="usluga-desc">Twoje mieszkanie ma potencjał, który tylko czeka na odkrycie. Łazienki, kuchnie, salony — odświeżamy z finezją i zachowujemy to, co wartościowe.</p>
+        <a href="#kontakt" class="usluga-link">Zapytaj o wycenę</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- DLACZEGO MY -->
+<section id="dlaczego">
+  <div class="dlaczego-wrap">
+    <div>
+      <div class="section-label">Dlaczego my</div>
+      <h2 class="section-title">Powody, dla<br>których klienci<br><em>nam ufają</em></h2>
+      <p class="section-sub">Nie jesteśmy kolejną firmą remontową. Jesteśmy partnerem, który bierze odpowiedzialność — za termin, budżet i efekt końcowy.</p>
+      <br><br>
+      <a href="#kontakt" class="btn-primary">Umów konsultację</a>
+    </div>
+    <div class="dlaczego-right">
+      <div class="przewaga">
+        <div class="przewaga-num">01</div>
+        <div class="przewaga-title">Terminy bez wymówek</div>
+        <p class="przewaga-desc">Podajemy datę i jej dotrzymujemy. Harmonogram projektu, codzienny raport postępu, zero niespodzianek.</p>
+      </div>
+      <div class="przewaga">
+        <div class="przewaga-num">02</div>
+        <div class="przewaga-title">Budżet pod kontrolą</div>
+        <p class="przewaga-desc">Wycena przed rozpoczęciem prac — szczegółowa i transparentna. Nie ma ukrytych kosztów. Cena umowna to cena końcowa.</p>
+      </div>
+      <div class="przewaga">
+        <div class="przewaga-num">03</div>
+        <div class="przewaga-title">Własna ekipa mistrzów</div>
+        <p class="przewaga-desc">Nie zatrudniamy podwykonawców z ulicy. Nasi specjaliści to stały zespół, którego jakość pracy znamy na pamięć.</p>
+      </div>
+      <div class="przewaga">
+        <div class="przewaga-num">04</div>
+        <div class="przewaga-title">Gwarancja na 3 lata</div>
+        <p class="przewaga-desc">Każde nasze wykończenie objęte jest pisemną gwarancją. Coś nie gra? Przyjeżdżamy i naprawiamy. Bezpłatnie.</p>
+      </div>
+      <div class="przewaga">
+        <div class="przewaga-num">05</div>
+        <div class="przewaga-title">Jeden opiekun projektu</div>
+        <p class="przewaga-desc">Masz jedno miejsce kontaktu — Twojego dedykowanego project managera. Dostępny, konkretny, zawsze w temacie.</p>
+      </div>
+      <div class="przewaga">
+        <div class="przewaga-num">06</div>
+        <div class="przewaga-title">Materiały premium</div>
+        <p class="przewaga-desc">Pracujemy wyłącznie z sprawdzonymi dostawcami. Płytki, farby, podłogi — to produkty, które służą przez lata.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- REALIZACJE -->
+<section id="realizacje">
+  <div class="realizacje-header">
+    <div>
+      <div class="section-label">Realizacje</div>
+      <h2 class="section-title">Nasze<br><em>projekty</em></h2>
+    </div>
+    <a href="#kontakt" class="btn-gold">Wszystkie realizacje</a>
+  </div>
+  <div class="realizacje-grid">
+    <div class="real-item">
+      <img src="https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?auto=format&fit=crop&w=1200&q=80" alt="Apartament premium Gdańsk" class="real-img">
+      <div class="real-overlay">
+        <div class="real-info">
+          <span class="real-tag">Wykończenie Pod Klucz · Gdańsk</span>
+          <div class="real-name">Apartament przy Motławie</div>
+        </div>
+      </div>
+    </div>
+    <div class="real-item">
+      <img src="https://images.unsplash.com/photo-1556909114-f6e7ad7d3136?auto=format&fit=crop&w=1400&q=80" alt="Kuchnia modern" class="real-img">
+      <div class="real-overlay">
+        <div class="real-info">
+          <span class="real-tag">Remont · Gdynia</span>
+          <div class="real-name">Dom rodzinny Orłowo</div>
+        </div>
+      </div>
+    </div>
+    <div class="real-item">
+      <img src="https://images.unsplash.com/photo-1600566753190-17f0baa2a6c3?auto=format&fit=crop&w=1200&q=80" alt="Nowoczesna kuchnia para" class="real-img">
+      <div class="real-overlay">
+        <div class="real-info">
+          <span class="real-tag">Projektowanie · Sopot</span>
+          <div class="real-name">Penthouse Monte Cassino</div>
+        </div>
+      </div>
+    </div>
+    <div class="real-item">
+      <img src="https://images.unsplash.com/photo-1558618666-fcd25c85cd64?auto=format&fit=crop&w=1200&q=80" alt="Precyzja wykończenia" class="real-img">
+      <div class="real-overlay">
+        <div class="real-info">
+          <span class="real-tag">Modernizacja · Gdańsk</span>
+          <div class="real-name">Kamienica Wrzeszcz</div>
+        </div>
+      </div>
+    </div>
+    <div class="real-item">
+      <img src="https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?auto=format&fit=crop&w=1200&q=80" alt="Luksusowe wnętrze" class="real-img" style="filter:brightness(0.6) hue-rotate(5deg)">
+      <div class="real-overlay">
+        <div class="real-info">
+          <span class="real-tag">Kompleksowy remont · Gdynia</span>
+          <div class="real-name">Śródmieście Gdyni</div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="realizacje-cta">
+    <p style="color: rgba(255,255,255,0.4); font-size: 0.9rem; margin-bottom: 1.5rem; font-weight: 300;">Ponad 350 ukończonych projektów w Trójmieście</p>
+    <a href="#kontakt" class="btn-gold">Rozpocznij swój projekt</a>
+  </div>
+</section>
+
+<!-- PROCES -->
+<section id="proces">
+  <div style="text-align: center; max-width: 600px; margin: 0 auto 1rem;">
+    <div class="section-label" style="justify-content: center;">Jak pracujemy</div>
+    <h2 class="section-title">Proces, który<br><em>daje spokój</em></h2>
+    <p class="section-sub" style="margin: 0 auto;">Pięć kroków, jeden cel: idealne wnętrze bez stresu i niepewności. Wiesz co, kiedy i za ile — na każdym etapie.</p>
+  </div>
+  <div class="proces-steps">
+    <div class="step">
+      <div class="step-num">01</div>
+      <div class="step-title">Bezpłatna konsultacja</div>
+      <p class="step-desc">Spotykamy się, słuchamy o Twoich marzeniach, potrzebach i budżecie. Zero zobowiązań, czysta rozmowa.</p>
+    </div>
+    <div class="step">
+      <div class="step-num">02</div>
+      <div class="step-title">Projekt i wycena</div>
+      <p class="step-desc">Przygotowujemy szczegółową wycenę i projekt wnętrza z wizualizacją 3D. Widzisz efekt końcowy zanim ruszymy z pracami.</p>
+    </div>
+    <div class="step">
+      <div class="step-num">03</div>
+      <div class="step-title">Umowa i harmonogram</div>
+      <p class="step-desc">Podpisujemy umowę z gwarancją terminu i ceny. Otrzymujesz szczegółowy harmonogram prac — dzień po dniu.</p>
+    </div>
+    <div class="step">
+      <div class="step-num">04</div>
+      <div class="step-title">Realizacja projektu</div>
+      <p class="step-desc">Nasz zespół pracuje, a Ty dostajesz codzienne aktualizacje. Możesz śledzić postęp na bieżąco z dowolnego miejsca.</p>
+    </div>
+    <div class="step">
+      <div class="step-num">05</div>
+      <div class="step-title">Odbiór i klucze</div>
+      <p class="step-desc">Wspólny odbiór, dokumentacja prac, przekazanie gwarancji. Twoje nowe wnętrze czeka — wejdź i poczuj różnicę.</p>
+    </div>
+  </div>
+  <div style="text-align: center; margin-top: 4rem;">
+    <a href="#kontakt" class="btn-primary">Umów bezpłatną konsultację</a>
+  </div>
+</section>
+
+<!-- KONTAKT -->
+<section id="kontakt">
+  <div style="text-align: center; max-width: 600px; margin: 0 auto 1rem;">
+    <div class="section-label" style="justify-content: center;">Kontakt</div>
+    <h2 class="section-title">Zacznijmy<br><em>rozmawiać</em></h2>
+    <p class="section-sub" style="margin: 0 auto;">Pierwsza konsultacja jest bezpłatna. Napisz do nas lub zadzwoń — odpowiemy w ciągu 24 godzin i wspólnie omówimy Twój projekt.</p>
+  </div>
+  <div class="kontakt-grid">
+    <div class="kontakt-info">
+      <p>Działamy w Gdańsku, Gdyni i Sopocie. Obsługujemy projekty mieszkaniowe i komercyjne — od małych łazienek po wielopokojowe apartamenty i domy. Zapraszamy do kontaktu.</p>
+      <div class="kontakt-detail">
+        <div class="kontakt-icon">✆</div>
+        <div class="kontakt-detail-text">
+          <strong>Telefon</strong>
+          <span>+48 500 123 456</span>
+        </div>
+      </div>
+      <div class="kontakt-detail">
+        <div class="kontakt-icon">@</div>
+        <div class="kontakt-detail-text">
+          <strong>E-mail</strong>
+          <span>kontakt@twojaprzestrzen.pl</span>
+        </div>
+      </div>
+      <div class="kontakt-detail">
+        <div class="kontakt-icon">⌖</div>
+        <div class="kontakt-detail-text">
+          <strong>Biuro</strong>
+          <span>ul. Świętojańska 12, 81-368 Gdynia</span>
+        </div>
+      </div>
+      <div class="kontakt-detail">
+        <div class="kontakt-icon">⏱</div>
+        <div class="kontakt-detail-text">
+          <strong>Godziny pracy</strong>
+          <span>Pon–Pt: 8:00–18:00 · Sob: 9:00–14:00</span>
+        </div>
+      </div>
+    </div>
+    <div class="kontakt-form">
+      <form onsubmit="handleForm(event)">
+        <div class="form-row-2">
+          <div class="form-row">
+            <label>Imię i nazwisko</label>
+            <input type="text" placeholder="Anna Kowalska" required>
+          </div>
+          <div class="form-row">
+            <label>Telefon</label>
+            <input type="tel" placeholder="+48 500 000 000">
+          </div>
+        </div>
+        <div class="form-row">
+          <label>E-mail</label>
+          <input type="email" placeholder="anna@przykład.pl" required>
+        </div>
+        <div class="form-row">
+          <label>Rodzaj projektu</label>
+          <select>
+            <option value="">Wybierz usługę...</option>
+            <option>Kompleksowy remont</option>
+            <option>Wykończenie pod klucz</option>
+            <option>Projektowanie wnętrz</option>
+            <option>Renowacja / modernizacja</option>
+            <option>Inne</option>
+          </select>
+        </div>
+        <div class="form-row">
+          <label>Wiadomość</label>
+          <textarea placeholder="Opisz krótko swój projekt — powierzchnia, miasto, oczekiwany termin..."></textarea>
+        </div>
+        <button type="submit" class="btn-primary" style="width: 100%; cursor: pointer; border: none;">Wyślij zapytanie →</button>
+        <p style="margin-top: 1rem; font-size: 0.75rem; color: var(--warm-gray); font-weight: 300; text-align: center;">Odpowiadamy w ciągu 24 godzin. Pierwsza konsultacja jest bezpłatna.</p>
+      </form>
+      <div id="form-success" style="display:none; padding: 2rem; background: #f0f8f0; border-left: 3px solid #4a9a4a; margin-top: 1rem;">
+        <p style="color: #2a6a2a; font-weight: 400;">✓ Wiadomość wysłana! Odezwiemy się wkrótce.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- OPINIE -->
+  <div class="opinie">
+    <h3 class="opinie-title">Co mówią nasi <em style="font-family:var(--font-display); font-style:italic; color:var(--gold-dark)">klienci</em></h3>
+    <div class="opinie-grid">
+      <div class="opinia reveal">
+        <div class="opinia-stars">★★★★★</div>
+        <p class="opinia-text">"Oddałam im mieszkanie w stanie deweloperskim, a odebrałam gotowy dom. Każdy szczegół dopieszczony, termin dotrzymany, a ekipa zawsze uprzejma. Polecam z czystym sumieniem."</p>
+        <div class="opinia-author">Marta Wiśniewska</div>
+        <div class="opinia-city">Gdańsk Wrzeszcz · Wykończenie pod klucz</div>
+      </div>
+      <div class="opinia reveal">
+        <div class="opinia-stars">★★★★★</div>
+        <p class="opinia-text">"Projekt łazienki i kuchni przeszedł moje oczekiwania. Dosłownie — efekt jest lepszy niż wizualizacja. Profesjonalizm na każdym kroku, kontakt bez problemów."</p>
+        <div class="opinia-author">Tomasz Nowak</div>
+        <div class="opinia-city">Gdynia Orłowo · Remont całościowy</div>
+      </div>
+      <div class="opinia reveal">
+        <div class="opinia-stars">★★★★★</div>
+        <p class="opinia-text">"Po złych doświadczeniach z innymi firmami, nareszcie trafiłam na ekipę, która robi co obiecuje. Budżet, termin, jakość — wszystko się zgadza. To rzadkość na rynku."</p>
+        <div class="opinia-author">Katarzyna Dąbrowska</div>
+        <div class="opinia-city">Sopot · Renowacja apartamentu</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- MAP INFO -->
+  <div class="map-placeholder">
+    <h3 class="map-title">Działamy w całym <em style="font-family:var(--font-display); font-style:italic; color:var(--gold-dark)">Trójmieście</em></h3>
+    <p style="color: var(--warm-gray); font-size: 0.9rem; font-weight: 300;">Obsługujemy klientów w Gdańsku, Gdyni, Sopocie i okolicach</p>
+    <div class="map-cities">
+      <div class="map-city">
+        <div class="map-city-dot"></div>
+        <div class="map-city-name">Gdańsk</div>
+      </div>
+      <div class="map-city">
+        <div class="map-city-dot" style="animation-delay: 0.5s"></div>
+        <div class="map-city-name">Gdynia</div>
+      </div>
+      <div class="map-city">
+        <div class="map-city-dot" style="animation-delay: 1s"></div>
+        <div class="map-city-name">Sopot</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div>
+    <a href="#hero" class="footer-logo">Twoja Przestrzeń</a>
+    <div class="footer-tagline">Kompleksowe remonty i wykończenia premium · Trójmiasto</div>
+  </div>
+  <div class="footer-links">
+    <a href="#onas">O nas</a>
+    <a href="#uslugi">Usługi</a>
+    <a href="#realizacje">Realizacje</a>
+    <a href="#proces">Jak pracujemy</a>
+    <a href="#kontakt">Kontakt</a>
+  </div>
+  <div class="footer-contact">
+    <a href="tel:+48500123456" class="footer-phone">+48 500 123 456</a>
+    <div class="footer-email">kontakt@twojaprzestrzen.pl</div>
+    <div style="margin-top: 0.75rem; font-size: 0.75rem; color: rgba(255,255,255,0.25);">ul. Świętojańska 12, Gdynia</div>
+  </div>
+</footer>
+<div class="footer-bottom">
+  © 2025 Twoja Przestrzeń. Wszelkie prawa zastrzeżone. · NIP: 000-000-00-00 · REGON: 000000000
+</div>
+
+<script>
+  // NAV scroll
+  const nav = document.getElementById('mainNav');
+  window.addEventListener('scroll', () => {
+    nav.classList.toggle('scrolled', window.scrollY > 50);
+  });
+
+  // MENU mobile
+  function toggleMenu() {
+    const links = document.querySelector('.nav-links');
+    const isOpen = links.style.display === 'flex';
+    links.style.display = isOpen ? 'none' : 'flex';
+    links.style.flexDirection = 'column';
+    links.style.position = 'absolute';
+    links.style.top = '80px';
+    links.style.left = '0';
+    links.style.right = '0';
+    links.style.background = 'rgba(42,40,37,0.98)';
+    links.style.padding = '2rem';
+    links.style.gap = '1.5rem';
+    if (isOpen) links.removeAttribute('style');
+  }
+
+  // SCROLL REVEAL
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach((e, i) => {
+      if (e.isIntersecting) {
+        setTimeout(() => {
+          e.target.classList.add('visible');
+        }, e.target.dataset.delay || 0);
+      }
+    });
+  }, { threshold: 0.15 });
+
+  document.querySelectorAll('.reveal, .stat-item, .przewaga, .step').forEach((el, i) => {
+    el.dataset.delay = (i % 4) * 120;
+    observer.observe(el);
+  });
+
+  // COUNTER animation
+  function animateCounter(el, target, suffix = '') {
+    const start = performance.now();
+    const duration = 2000;
+    const update = (now) => {
+      const progress = Math.min((now - start) / duration, 1);
+      const eased = 1 - Math.pow(1 - progress, 3);
+      el.textContent = Math.round(eased * target) + suffix;
+      if (progress < 1) requestAnimationFrame(update);
+    };
+    requestAnimationFrame(update);
+  }
+
+  const counterObserver = new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        const el = e.target.querySelector('.stat-num');
+        const target = parseInt(el.dataset.target);
+        const suffix = target === 98 ? '%' : target === 3 ? '' : '+';
+        animateCounter(el, target, suffix);
+        counterObserver.unobserve(e.target);
+      }
+    });
+  }, { threshold: 0.4 });
+
+  document.querySelectorAll('.stat-item').forEach(el => counterObserver.observe(el));
+
+  // FORM
+  function handleForm(e) {
+    e.preventDefault();
+    e.target.style.display = 'none';
+    document.getElementById('form-success').style.display = 'block';
+  }
+
+  // Smooth anchor
+  document.querySelectorAll('a[href^="#"]').forEach(a => {
+    a.addEventListener('click', e => {
+      const t = document.querySelector(a.getAttribute('href'));
+      if (t) {
+        e.preventDefault();
+        t.scrollIntoView({ behavior: 'smooth' });
+        // close mobile menu
+        const links = document.querySelector('.nav-links');
+        if (window.innerWidth < 768) links.removeAttribute('style');
+      }
+    });
+  });
+</script>
+</body>
+</html>
